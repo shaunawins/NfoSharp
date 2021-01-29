@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+
 namespace NfoSharp.NfoDtos
 {
 	[XmlRoot(ElementName="rating")]
