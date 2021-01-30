@@ -17,7 +17,7 @@ namespace NfoSharp
             var r = new Rating();
             r.Name = "custom";
             r.Value = "10";
-            m.Ratings.Add(new Rating());
+            m.Ratings.Add(r);
             var x = m.SerializeToXml();
             Console.WriteLine(x.ToString());
         }
