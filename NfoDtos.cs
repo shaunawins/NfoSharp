@@ -80,10 +80,11 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
                 
+                public Movie() {}
                 public Movie(string title) {
                     Title = title;
                     if (NfoSharp.GeneratedNfos)
-                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                        Uniqueid.Add(NfoDtos.Uniqueid.Generate());
                 }
 	}
 
@@ -164,10 +165,11 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
                 
+                public Tvshow() {}
                 public Tvshow(string title) {
                     Title = title;
                     if (NfoSharp.GeneratedNfos)
-                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                        Uniqueid.Add(NfoDtos.Uniqueid.Generate());
                 }
 	}
 
@@ -245,11 +247,12 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
                 
+                public Episodedetails() {}
                 public Episodedetails(string title, string showTitle) {
                     Title = title;
                     Showtitle = showTitle;
                     if (NfoSharp.GeneratedNfos)
-                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                        Uniqueid.Add(NfoDtos.Uniqueid.Generate());
                 }
 	}
 
@@ -308,10 +311,9 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
                 
+                public Musicvideo() {}
                 public Musicvideo(string title) {
                     Title = title;
-                    if (NfoSharp.GeneratedNfos) 
-                        Uniqueid = NfoDtos.Uniqueid.Generate();
                 }
 	}
 
@@ -447,8 +449,8 @@ namespace NfoSharp.NfoDtos
 
                 public static Uniqueid Generate(string type = null)=> 
                     new Uniqueid(){
-                        Id = Guid.NewGuid().ToString,
-                        Type = type ?? NfoSharp.UniqueidType;
+                        Id = Guid.NewGuid().ToString(),
+                        Type = type ?? NfoSharp.UniqueidType,
                         Default = true 
                     };
                 

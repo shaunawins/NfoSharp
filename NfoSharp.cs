@@ -15,14 +15,11 @@ namespace NfoSharp
     
     // Todo: Put code in here to parse an XML and return a properly typed NFO
     public class Nfo {
-	[XmlElement(ElementName="movie")]
-	public Movie Movie { get; set; }
-	[XmlElement(ElementName="tvshow")]
-	public Tvshow Tvshow { get; set; }
-	[XmlElement(ElementName="episodedetails")]
-	public Episodedetails Episodedetails { get; set; }
-	[XmlElement(ElementName="musicvideo")]
-	public Musicvideo Musicvideo { get; set; }
+        public void Parse(XDocument NfoFile){
+            // Try serializing and return proper type of NFO 
+        }
+        public void Parse(FileInfo NfoFile) => 
+            XDocument.Parse(File.ReadAllText(NfoFile.FullName));
     }
 
 }
