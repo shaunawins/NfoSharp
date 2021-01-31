@@ -79,6 +79,12 @@ namespace NfoSharp.NfoDtos
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
+                
+                public Movie(string title) {
+                    Title = title;
+                    if (NfoSharp.GeneratedNfos)
+                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                }
 	}
 
 	[XmlRoot(ElementName="tvshow")]
@@ -157,6 +163,12 @@ namespace NfoSharp.NfoDtos
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
+                
+                public Tvshow(string title) {
+                    Title = title;
+                    if (NfoSharp.GeneratedNfos)
+                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                }
 	}
 
 	[XmlRoot(ElementName="episodedetails")]
@@ -232,6 +244,13 @@ namespace NfoSharp.NfoDtos
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
+                
+                public Episodedetails(string title, string showTitle) {
+                    Title = title;
+                    Showtitle = showTitle;
+                    if (NfoSharp.GeneratedNfos)
+                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                }
 	}
 
 	[XmlRoot(ElementName="musicvideo")]
@@ -288,6 +307,12 @@ namespace NfoSharp.NfoDtos
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
+                
+                public Musicvideo(string title) {
+                    Title = title;
+                    if (NfoSharp.GeneratedNfos) 
+                        Uniqueid = NfoDtos.Uniqueid.Generate();
+                }
 	}
 
 	[XmlRoot(ElementName="artist")]
@@ -420,7 +445,7 @@ namespace NfoSharp.NfoDtos
                 [XmlText]
                 public string Id {get; set; }
 
-                public Uniqueid Generate(string type = null)=> 
+                public static Uniqueid Generate(string type = null)=> 
                     new Uniqueid(){
                         Id = Guid.NewGuid().ToString,
                         Type = type ?? NfoSharp.UniqueidType;
