@@ -28,13 +28,15 @@ namespace NfoSharp.NfoDtos
 		public string Type { get; set; }
 		[XmlAttribute(AttributeName="season")]
 		public string Season { get; set; }
+                [XmlText]
+                public string ThumbLocation { get; set; }
 	}
 
-	[XmlRoot(ElementName="fanart")]
-	public class Fanart {
-		[XmlElement(ElementName="thumb")]
-		public List<Thumb> Thumb { get; set; }
-	}
+	//[XmlRoot(ElementName="fanart")]
+	//public class Fanart {
+	//	[XmlElement(ElementName="thumb")]
+	//	public List<Thumb> Thumb { get; set; }
+	//}
 
 	//[XmlRoot(ElementName="ratings")]
 	//public class Ratings {
@@ -49,9 +51,11 @@ namespace NfoSharp.NfoDtos
 		[XmlAttribute(AttributeName="default")]
 		public bool Default { get; set; }
                 [XmlText]
-                public string Value {get; set; }
+                public string Id {get; set; }
                 public Uniqueid(){
-                    Value = Guid.NewGuid().ToString();
+                    // Move this logic to a static method that returns a
+                    // UniqueId so we can properly support generated NFOs
+                    Id = Guid.NewGuid().ToString();
                     Type = "generated";
                     Default = true;
                 }
@@ -102,9 +106,9 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="video")]
 		public Video Video { get; set; }
 		[XmlElement(ElementName="audio")]
-		public Audio Audio { get; set; }
+		public List<Audio> Audio { get; set; }
 		[XmlElement(ElementName="subtitle")]
-		public Subtitle Subtitle { get; set; }
+		public List<Subtitle> Subtitle { get; set; }
 	}
 
 	[XmlRoot(ElementName="fileinfo")]
@@ -158,7 +162,6 @@ namespace NfoSharp.NfoDtos
 		public string Runtime { get; set; }
 		[XmlElement(ElementName="thumb")]
 		public List<Thumb> Thumb { get; set; }
-
 		[XmlArray(ElementName="fanart")]
 		[XmlArrayItem(ElementName="thumb")]
 		public Fanart Fanart { get; set; }
@@ -214,12 +217,16 @@ namespace NfoSharp.NfoDtos
 	public class Namedseason {
 		[XmlAttribute(AttributeName="number")]
 		public string Number { get; set; }
+                [XmlText]
+                public string Name { get; set; }
 	}
 
 	[XmlRoot(ElementName="url")]
 	public class Url {
 		[XmlAttribute(AttributeName="cache")]
 		public string Cache { get; set; }
+                [XmlText]
+                public string Address { get; set; }
 	}
 
 	[XmlRoot(ElementName="episodeguide")]
@@ -540,6 +547,8 @@ namespace NfoSharp.NfoDtos
 	public class Userrating {
 		[XmlAttribute(AttributeName="max")]
 		public string Max { get; set; }
+                [XmlText]
+                public string Rating { get; set; }
 	}
 
 	[XmlRoot(ElementName="albumArtistCredits")]
