@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace NfoSharp.NfoDtos
 {
-	[XmlRoot(Namespace="",ElementName="rating")]
+	[XmlRoot(ElementName="rating")]
 	public class Rating {
 		[XmlElement(ElementName="value")]
 		public string Value { get; set; }
@@ -15,10 +15,10 @@ namespace NfoSharp.NfoDtos
 		[XmlAttribute(AttributeName="max")]
 		public string Max { get; set; }
 		[XmlAttribute(AttributeName="default")]
-		public string Default { get; set; }
+		public bool Default { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="thumb")]
+	[XmlRoot(ElementName="thumb")]
 	public class Thumb {
 		[XmlAttribute(AttributeName="aspect")]
 		public string Aspect { get; set; }
@@ -30,13 +30,19 @@ namespace NfoSharp.NfoDtos
 		public string Season { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="fanart")]
+	[XmlRoot(ElementName="fanart")]
 	public class Fanart {
 		[XmlElement(ElementName="thumb")]
-		public Thumb Thumb { get; set; }
+		public List<Thumb> Thumb { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="uniqueid")]
+	//[XmlRoot(ElementName="ratings")]
+	//public class Ratings {
+	//	[XmlElement(ElementName="rating")]
+	//	public List<Rating> Rating { get; set; }
+	//}
+
+	[XmlRoot(ElementName="uniqueid")]
 	public class Uniqueid {
 		[XmlAttribute(AttributeName="type")]
 		public string Type { get; set; }
@@ -51,7 +57,7 @@ namespace NfoSharp.NfoDtos
                 }
 	}
 
-	[XmlRoot(Namespace="",ElementName="set")]
+	[XmlRoot(ElementName="set")]
 	public class Set {
 		[XmlElement(ElementName="name")]
 		public string Name { get; set; }
@@ -59,7 +65,7 @@ namespace NfoSharp.NfoDtos
 		public string Overview { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="video")]
+	[XmlRoot(ElementName="video")]
 	public class Video {
 		[XmlElement(ElementName="codec")]
 		public string Codec { get; set; }
@@ -75,7 +81,7 @@ namespace NfoSharp.NfoDtos
 		public string Stereomode { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="audio")]
+	[XmlRoot(ElementName="audio")]
 	public class Audio {
 		[XmlElement(ElementName="codec")]
 		public string Codec { get; set; }
@@ -85,13 +91,13 @@ namespace NfoSharp.NfoDtos
 		public string Channels { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="subtitle")]
+	[XmlRoot(ElementName="subtitle")]
 	public class Subtitle {
 		[XmlElement(ElementName="language")]
 		public string Language { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="streamdetails")]
+	[XmlRoot(ElementName="streamdetails")]
 	public class Streamdetails {
 		[XmlElement(ElementName="video")]
 		public Video Video { get; set; }
@@ -101,13 +107,13 @@ namespace NfoSharp.NfoDtos
 		public Subtitle Subtitle { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="fileinfo")]
+	[XmlRoot(ElementName="fileinfo")]
 	public class Fileinfo {
 		[XmlElement(ElementName="streamdetails")]
 		public Streamdetails Streamdetails { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="actor")]
+	[XmlRoot(ElementName="actor")]
 	public class Actor {
 		[XmlElement(ElementName="name")]
 		public string Name { get; set; }
@@ -119,7 +125,7 @@ namespace NfoSharp.NfoDtos
 		public string Thumb { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="resume")]
+	[XmlRoot(ElementName="resume")]
 	public class Resume {
 		[XmlElement(ElementName="position")]
 		public string Position { get; set; }
@@ -127,7 +133,7 @@ namespace NfoSharp.NfoDtos
 		public string Total { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="movie")]
+	[XmlRoot(ElementName="movie")]
 	public class Movie {
 		[XmlElement(ElementName="title")]
 		public string Title { get; set; }
@@ -151,8 +157,10 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="runtime")]
 		public string Runtime { get; set; }
 		[XmlElement(ElementName="thumb")]
-		public Thumb Thumb { get; set; }
-		[XmlElement(ElementName="fanart")]
+		public List<Thumb> Thumb { get; set; }
+
+		[XmlArray(ElementName="fanart")]
+		[XmlArrayItem(ElementName="thumb")]
 		public Fanart Fanart { get; set; }
 		[XmlElement(ElementName="mpaa")]
 		public string Mpaa { get; set; }
@@ -163,19 +171,19 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="id")]
 		public string Id { get; set; }
 		[XmlElement(ElementName="uniqueid")]
-		public Uniqueid Uniqueid { get; set; } = new Uniqueid();
+		public List<Uniqueid> Uniqueid { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="country")]
-		public string Country { get; set; }
+		public List<string> Country { get; set; }
 		[XmlElement(ElementName="set")]
 		public Set Set { get; set; }
 		[XmlElement(ElementName="tag")]
-		public string Tag { get; set; }
+		public List<string> Tag { get; set; }
 		[XmlElement(ElementName="credits")]
-		public string Credits { get; set; }
+		public List<string> Credits { get; set; }
 		[XmlElement(ElementName="director")]
-		public string Director { get; set; }
+		public List<string> Director { get; set; }
 		[XmlElement(ElementName="premiered")]
 		public string Premiered { get; set; }
 		[XmlElement(ElementName="year")]
@@ -187,13 +195,13 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="aired")]
 		public string Aired { get; set; }
 		[XmlElement(ElementName="studio")]
-		public string Studio { get; set; }
+		public List<string> Studio { get; set; }
 		[XmlElement(ElementName="trailer")]
 		public string Trailer { get; set; }
 		[XmlElement(ElementName="fileinfo")]
-		public Fileinfo Fileinfo { get; set; }
+		public List<Fileinfo> Fileinfo { get; set; }
 		[XmlElement(ElementName="actor")]
-		public Actor Actor { get; set; }
+		public List<Actor> Actor { get; set; }
 		[XmlElement(ElementName="showlink")]
 		public string Showlink { get; set; }
 		[XmlElement(ElementName="resume")]
@@ -202,25 +210,25 @@ namespace NfoSharp.NfoDtos
 		public string Dateadded { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="namedseason")]
+	[XmlRoot(ElementName="namedseason")]
 	public class Namedseason {
 		[XmlAttribute(AttributeName="number")]
 		public string Number { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="url")]
+	[XmlRoot(ElementName="url")]
 	public class Url {
 		[XmlAttribute(AttributeName="cache")]
 		public string Cache { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="episodeguide")]
+	[XmlRoot(ElementName="episodeguide")]
 	public class Episodeguide {
 		[XmlElement(ElementName="url")]
 		public Url Url { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="tvshow")]
+	[XmlRoot(ElementName="tvshow")]
 	public class Tvshow {
 		[XmlElement(ElementName="title")]
 		public string Title { get; set; }
@@ -230,14 +238,15 @@ namespace NfoSharp.NfoDtos
 		public string Showtitle { get; set; }
 		[XmlElement(ElementName="sorttitle")]
 		public string Sorttitle { get; set; }
-		[XmlElement(ElementName="ratings")]
+		[XmlArray(ElementName="ratings")]
+		[XmlArrayItem(ElementName="rating")]
 		public List<Rating> Ratings { get; set; }
 		[XmlElement(ElementName="userrating")]
 		public string Userrating { get; set; }
 		[XmlElement(ElementName="top250")]
 		public string Top250 { get; set; }
 		[XmlElement(ElementName="season")]
-		public string Season { get; set; }
+                public string Season { get; set; }
 		[XmlElement(ElementName="episode")]
 		public string Episode { get; set; }
 		[XmlElement(ElementName="displayepisode")]
@@ -256,7 +265,8 @@ namespace NfoSharp.NfoDtos
 		public string Runtime { get; set; }
 		[XmlElement(ElementName="thumb")]
 		public List<Thumb> Thumb { get; set; }
-		[XmlElement(ElementName="fanart")]
+		[XmlArray(ElementName="fanart")]
+		[XmlArrayItem(ElementName="thumb")]
 		public Fanart Fanart { get; set; }
 		[XmlElement(ElementName="mpaa")]
 		public string Mpaa { get; set; }
@@ -269,11 +279,11 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="id")]
 		public string Id { get; set; }
 		[XmlElement(ElementName="uniqueid")]
-		public Uniqueid Uniqueid { get; set; } = new Uniqueid();
+		public List<Uniqueid> Uniqueid { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="tag")]
-		public string Tag { get; set; }
+		public List<string> Tag { get; set; }
 		[XmlElement(ElementName="premiered")]
 		public string Premiered { get; set; }
 		[XmlElement(ElementName="year")]
@@ -285,24 +295,24 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="aired")]
 		public string Aired { get; set; }
 		[XmlElement(ElementName="studio")]
-		public string Studio { get; set; }
+		public List<string> Studio { get; set; }
 		[XmlElement(ElementName="trailer")]
 		public string Trailer { get; set; }
 		[XmlElement(ElementName="actor")]
-		public Actor Actor { get; set; }
+		public List<Actor> Actor { get; set; }
 		[XmlElement(ElementName="resume")]
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="episodebookmark")]
+	[XmlRoot(ElementName="episodebookmark")]
 	public class Episodebookmark {
 		[XmlElement(ElementName="position")]
 		public string Position { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="episodedetails")]
+	[XmlRoot(ElementName="episodedetails")]
 	public class Episodedetails {
 		[XmlElement(ElementName="title")]
 		public string Title { get; set; }
@@ -310,7 +320,8 @@ namespace NfoSharp.NfoDtos
 		public string Originaltitle { get; set; }
 		[XmlElement(ElementName="showtitle")]
 		public string Showtitle { get; set; }
-		[XmlElement(ElementName="ratings")]
+		[XmlArray(ElementName="ratings")]
+		[XmlArrayItem(ElementName="rating")]
 		public List<Rating> Ratings { get; set; }
 		[XmlElement(ElementName="userrating")]
 		public string Userrating { get; set; }
@@ -333,7 +344,7 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="runtime")]
 		public string Runtime { get; set; }
 		[XmlElement(ElementName="thumb")]
-		public string Thumb { get; set; }
+		public List<string> Thumb { get; set; }
 		[XmlElement(ElementName="mpaa")]
 		public string Mpaa { get; set; }
 		[XmlElement(ElementName="playcount")]
@@ -343,13 +354,13 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="id")]
 		public string Id { get; set; }
 		[XmlElement(ElementName="uniqueid")]
-		public Uniqueid Uniqueid { get; set; } = new Uniqueid();
+		public List<Uniqueid> Uniqueid { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="credits")]
-		public string Credits { get; set; }
+		public List<string> Credits { get; set; }
 		[XmlElement(ElementName="director")]
-		public string Director { get; set; }
+		public List<string> Director { get; set; }
 		[XmlElement(ElementName="premiered")]
 		public string Premiered { get; set; }
 		[XmlElement(ElementName="year")]
@@ -361,22 +372,22 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="aired")]
 		public string Aired { get; set; }
 		[XmlElement(ElementName="studio")]
-		public string Studio { get; set; }
+		public List<string> Studio { get; set; }
 		[XmlElement(ElementName="trailer")]
 		public string Trailer { get; set; }
 		[XmlElement(ElementName="episodebookmark")]
 		public Episodebookmark Episodebookmark { get; set; }
 		[XmlElement(ElementName="fileinfo")]
-		public Fileinfo Fileinfo { get; set; }
+		public List<Fileinfo> Fileinfo { get; set; }
 		[XmlElement(ElementName="actor")]
-		public Actor Actor { get; set; }
+		public List<Actor> Actor { get; set; }
 		[XmlElement(ElementName="resume")]
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="musicvideo")]
+	[XmlRoot(ElementName="musicvideo")]
 	public class Musicvideo {
 		[XmlElement(ElementName="title")]
 		public string Title { get; set; }
@@ -397,7 +408,7 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="runtime")]
 		public string Runtime { get; set; }
 		[XmlElement(ElementName="thumb")]
-		public Thumb Thumb { get; set; }
+		public List<Thumb> Thumb { get; set; }
 		[XmlElement(ElementName="mpaa")]
 		public string Mpaa { get; set; }
 		[XmlElement(ElementName="playcount")]
@@ -405,11 +416,11 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="id")]
 		public string Id { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="tag")]
-		public string Tag { get; set; }
+		public List<string> Tag { get; set; }
 		[XmlElement(ElementName="director")]
-		public string Director { get; set; }
+		public List<string> Director { get; set; }
 		[XmlElement(ElementName="year")]
 		public string Year { get; set; }
 		[XmlElement(ElementName="status")]
@@ -419,20 +430,20 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="aired")]
 		public string Aired { get; set; }
 		[XmlElement(ElementName="studio")]
-		public string Studio { get; set; }
+		public List<string> Studio { get; set; }
 		[XmlElement(ElementName="trailer")]
 		public string Trailer { get; set; }
 		[XmlElement(ElementName="fileinfo")]
 		public Fileinfo Fileinfo { get; set; }
 		[XmlElement(ElementName="artist")]
-		public string Artist { get; set; }
+		public List<string> Artist { get; set; }
 		[XmlElement(ElementName="resume")]
 		public Resume Resume { get; set; }
 		[XmlElement(ElementName="dateadded")]
 		public string Dateadded { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="album")]
+	[XmlRoot(ElementName="album")]
 	public class Album {
 		[XmlElement(ElementName="title")]
 		public string Title { get; set; }
@@ -447,13 +458,13 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="artistdesc")]
 		public string Artistdesc { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="style")]
-		public string Style { get; set; }
+		public List<string> Style { get; set; }
 		[XmlElement(ElementName="mood")]
-		public string Mood { get; set; }
+		public List<string> Mood { get; set; }
 		[XmlElement(ElementName="theme")]
-		public string Theme { get; set; }
+		public List<string> Theme { get; set; }
 		[XmlElement(ElementName="compilation")]
 		public string Compilation { get; set; }
 		[XmlElement(ElementName="review")]
@@ -465,7 +476,7 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="label")]
 		public string Label { get; set; }
 		[XmlElement(ElementName="thumb")]
-		public Thumb Thumb { get; set; }
+		public List<Thumb> Thumb { get; set; }
 		[XmlElement(ElementName="path")]
 		public string Path { get; set; }
 		[XmlElement(ElementName="rating")]
@@ -475,12 +486,12 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="votes")]
 		public string Votes { get; set; }
 		[XmlElement(ElementName="albumArtistCredits")]
-		public AlbumArtistCredits AlbumArtistCredits { get; set; }
+		public List<AlbumArtistCredits> AlbumArtistCredits { get; set; }
 		[XmlElement(ElementName="releasetype")]
 		public string Releasetype { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="artist")]
+	[XmlRoot(ElementName="artist")]
 	public class Artist {
 		[XmlElement(ElementName="name")]
 		public string Name { get; set; }
@@ -495,15 +506,15 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="disambiguation")]
 		public string Disambiguation { get; set; }
 		[XmlElement(ElementName="genre")]
-		public string Genre { get; set; }
+		public List<string> Genre { get; set; }
 		[XmlElement(ElementName="style")]
-		public string Style { get; set; }
+		public List<string> Style { get; set; }
 		[XmlElement(ElementName="mood")]
-		public string Mood { get; set; }
+		public List<string> Mood { get; set; }
 		[XmlElement(ElementName="yearsactive")]
-		public string Yearsactive { get; set; }
+		public List<string> Yearsactive { get; set; }
 		[XmlElement(ElementName="instruments")]
-		public string Instruments { get; set; }
+		public List<string> Instruments { get; set; }
 		[XmlElement(ElementName="born")]
 		public string Born { get; set; }
 		[XmlElement(ElementName="formed")]
@@ -515,22 +526,23 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="disbanded")]
 		public string Disbanded { get; set; }
 		[XmlElement(ElementName="thumb")]
-		public Thumb Thumb { get; set; }
+		public List<Thumb> Thumb { get; set; }
 		[XmlElement(ElementName="path")]
 		public string Path { get; set; }
-		[XmlElement(ElementName="fanart")]
+		[XmlArray(ElementName="fanart")]
+		[XmlArrayItem(ElementName="thumb")]
 		public Fanart Fanart { get; set; }
 		[XmlElement(ElementName="album")]
-		public Album Album { get; set; }
+		public List<Album> Album { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="userrating")]
+	[XmlRoot(ElementName="userrating")]
 	public class Userrating {
 		[XmlAttribute(AttributeName="max")]
 		public string Max { get; set; }
 	}
 
-	[XmlRoot(Namespace="",ElementName="albumArtistCredits")]
+	[XmlRoot(ElementName="albumArtistCredits")]
 	public class AlbumArtistCredits {
 		[XmlElement(ElementName="artist")]
 		public string Artist { get; set; }
@@ -539,7 +551,7 @@ namespace NfoSharp.NfoDtos
 	}
 
         // This will define the possible root elements in the future
-	[XmlRoot(Namespace="",ElementName="nfo")]
+	[XmlRoot(ElementName="nfo")]
 	public class Nfo {
 		[XmlElement(ElementName="movie")]
 		public Movie Movie { get; set; }
@@ -554,5 +566,4 @@ namespace NfoSharp.NfoDtos
 		[XmlElement(ElementName="album")]
 		public Album Album { get; set; }
 	}
-
 }
