@@ -1,26 +1,10 @@
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using NfoSharp;
 
 namespace NfoSharp.NfoDtos
 {
-        // This will define the possible root elements in the future
-	[XmlRoot(ElementName="nfo")]
-	public class Nfo {
-		[XmlElement(ElementName="movie")]
-		public Movie Movie { get; set; }
-		[XmlElement(ElementName="tvshow")]
-		public Tvshow Tvshow { get; set; }
-		[XmlElement(ElementName="episodedetails")]
-		public Episodedetails Episodedetails { get; set; }
-		[XmlElement(ElementName="musicvideo")]
-		public Musicvideo Musicvideo { get; set; }
-		[XmlElement(ElementName="artist")]
-		public Artist Artist { get; set; }
-		[XmlElement(ElementName="album")]
-		public Album Album { get; set; }
-	}
-
 	[XmlRoot(ElementName="movie")]
 	public class Movie {
 		[XmlElement(ElementName="title")]
@@ -436,10 +420,10 @@ namespace NfoSharp.NfoDtos
                 [XmlText]
                 public string Id {get; set; }
 
-                public Uniqueid Generate(string type = "generated") => 
+                public Uniqueid Generate(string type = null)=> 
                     new Uniqueid(){
                         Id = Guid.NewGuid().ToString,
-                        Type = type,
+                        Type = type ?? NfoSharp.UniqueidType;
                         Default = true 
                     };
                 

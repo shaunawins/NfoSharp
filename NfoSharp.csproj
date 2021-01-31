@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="NfoSharp.cs" />
     <Compile Include="NfoDtos.cs" />
     <Compile Include="ExtensionMethods.cs" />
   </ItemGroup>

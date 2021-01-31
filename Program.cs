@@ -7,7 +7,7 @@ using NfoSharp.NfoDtos;
 
 namespace NfoSharp
 {
-    public class NfoSharp
+    public class Program
     {
         public static void Main(string[] args)
         {
